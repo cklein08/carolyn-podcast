@@ -11,6 +11,15 @@
     <itunes:explicit>false</itunes:explicit>
     <itunes:type>episodic</itunes:type>
     <item>
+      <title>KPN Meeting Refresher</title>
+      <description>KPN meeting refresher: key context and talking points for the KPN engagement.</description>
+      <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-07-episode-7.mp3" length="3581372" type="audio/mpeg"/>
+      <guid isPermaLink="false">138ff77abfad</guid>
+      <pubDate>Wed, 07 Oct 2026 19:11:37 +0000</pubDate>
+      <itunes:duration>596</itunes:duration>
+      <itunes:summary>KPN meeting refresher: key context and talking points for the KPN engagement.</itunes:summary>
+    </item>
+    <item>
       <title>Heineken GenPem MCP Package</title>
       <description>Heineken GenPem MCP package: model context protocol integration for Heineken content workflows.</description>
       <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-07-episode-6.mp3" length="6238172" type="audio/mpeg"/>
