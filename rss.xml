@@ -11,6 +11,15 @@
     <itunes:explicit>false</itunes:explicit>
     <itunes:type>episodic</itunes:type>
     <item>
+      <title>KPN Deck Modifications — EA POV</title>
+      <description>KPN deck modifications from Carolyn's enterprise architect point of view.</description>
+      <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-07-episode-8.mp3" length="11343404" type="audio/mpeg"/>
+      <guid isPermaLink="false">5e463f96d597</guid>
+      <pubDate>Wed, 07 Oct 2026 19:14:51 +0000</pubDate>
+      <itunes:duration>1890</itunes:duration>
+      <itunes:summary>KPN deck modifications from Carolyn's enterprise architect point of view.</itunes:summary>
+    </item>
+    <item>
       <title>KPN Meeting Refresher</title>
       <description>KPN meeting refresher: key context and talking points for the KPN engagement.</description>
       <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-07-episode-7.mp3" length="3581372" type="audio/mpeg"/>
