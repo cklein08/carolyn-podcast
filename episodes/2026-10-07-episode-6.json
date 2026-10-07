@@ -1,0 +1,13 @@
+{
+  "title": "Heineken GenPem MCP Package",
+  "description": "Heineken GenPem MCP package: model context protocol integration for Heineken content workflows.",
+  "audio_file": "/opt/data/.hermes/scripts/podcast/repo/audio/2026-10-07-episode-6.mp3",
+  "audio_url": "https://cklein08.github.io/carolyn-podcast/audio/2026-10-07-episode-6.mp3",
+  "duration": 1039.656,
+  "size": 6238172,
+  "guid": "8c1c21c59648",
+  "pub_date": "Wed, 07 Oct 2026 19:07:37 +0000",
+  "episode_number": 6,
+  "date": "2026-10-07",
+  "voice": "en-GB-SoniaNeural"
+}

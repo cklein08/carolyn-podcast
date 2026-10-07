@@ -11,6 +11,15 @@
     <itunes:explicit>false</itunes:explicit>
     <itunes:type>episodic</itunes:type>
     <item>
+      <title>Heineken GenPem MCP Package</title>
+      <description>Heineken GenPem MCP package: model context protocol integration for Heineken content workflows.</description>
+      <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-07-episode-6.mp3" length="6238172" type="audio/mpeg"/>
+      <guid isPermaLink="false">8c1c21c59648</guid>
+      <pubDate>Wed, 07 Oct 2026 19:07:37 +0000</pubDate>
+      <itunes:duration>1039</itunes:duration>
+      <itunes:summary>Heineken GenPem MCP package: model context protocol integration for Heineken content workflows.</itunes:summary>
+    </item>
+    <item>
       <title>Heineken EA Brief — Business Case & CEC POC</title>
       <description>Heineken business case and CEC proof of concept: commercial value, ROI, customer experience center.</description>
       <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-07-episode-5.mp3" length="15575852" type="audio/mpeg"/>
