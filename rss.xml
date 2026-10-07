@@ -11,6 +11,15 @@
     <itunes:explicit>false</itunes:explicit>
     <itunes:type>episodic</itunes:type>
     <item>
+      <title>Heineken EA Brief — GenStudio POC</title>
+      <description>Heineken GenStudio proof of concept: creative production, asset generation, brand intelligence.</description>
+      <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-07-episode-4.mp3" length="11004140" type="audio/mpeg"/>
+      <guid isPermaLink="false">1edef2e4ac68</guid>
+      <pubDate>Wed, 07 Oct 2026 18:45:23 +0000</pubDate>
+      <itunes:duration>1833</itunes:duration>
+      <itunes:summary>Heineken GenStudio proof of concept: creative production, asset generation, brand intelligence.</itunes:summary>
+    </item>
+    <item>
       <title>Heineken EA Brief — Real Artifacts</title>
       <description>Heineken x Adobe real artifacts: workflow blueprints, Freddy.Connect process mapping, operational integration.</description>
       <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-07-episode-3.mp3" length="20680652" type="audio/mpeg"/>

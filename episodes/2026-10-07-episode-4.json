@@ -1,0 +1,13 @@
+{
+  "title": "Heineken EA Brief \u2014 GenStudio POC",
+  "description": "Heineken GenStudio proof of concept: creative production, asset generation, brand intelligence.",
+  "audio_file": "/opt/data/.hermes/scripts/podcast/repo/audio/2026-10-07-episode-4.mp3",
+  "audio_url": "https://cklein08.github.io/carolyn-podcast/audio/2026-10-07-episode-4.mp3",
+  "duration": 1833.984,
+  "size": 11004140,
+  "guid": "1edef2e4ac68",
+  "pub_date": "Wed, 07 Oct 2026 18:45:23 +0000",
+  "episode_number": 4,
+  "date": "2026-10-07",
+  "voice": "en-GB-SoniaNeural"
+}
