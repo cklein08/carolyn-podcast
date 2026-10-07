@@ -25,6 +25,19 @@
       "episode_number": 2,
       "date": "2026-10-07",
       "voice": "en-GB-SoniaNeural"
+    },
+    {
+      "title": "Heineken EA Brief \u2014 Real Artifacts",
+      "description": "Heineken x Adobe real artifacts: workflow blueprints, Freddy.Connect process mapping, operational integration.",
+      "audio_file": "/opt/data/.hermes/scripts/podcast/repo/audio/2026-10-07-episode-3.mp3",
+      "audio_url": "https://cklein08.github.io/carolyn-podcast/audio/2026-10-07-episode-3.mp3",
+      "duration": 3446.736,
+      "size": 20680652,
+      "guid": "3baf9c441898",
+      "pub_date": "Wed, 07 Oct 2026 18:29:43 +0000",
+      "episode_number": 3,
+      "date": "2026-10-07",
+      "voice": "en-GB-SoniaNeural"
     }
   ]
 }
