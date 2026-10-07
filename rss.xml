@@ -11,6 +11,15 @@
     <itunes:explicit>false</itunes:explicit>
     <itunes:type>episodic</itunes:type>
     <item>
+      <title>Heineken EA Brief — Business Case & CEC POC</title>
+      <description>Heineken business case and CEC proof of concept: commercial value, ROI, customer experience center.</description>
+      <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-07-episode-5.mp3" length="15575852" type="audio/mpeg"/>
+      <guid isPermaLink="false">3fe17e1ead8c</guid>
+      <pubDate>Wed, 07 Oct 2026 18:53:55 +0000</pubDate>
+      <itunes:duration>2595</itunes:duration>
+      <itunes:summary>Heineken business case and CEC proof of concept: commercial value, ROI, customer experience center.</itunes:summary>
+    </item>
+    <item>
       <title>Heineken EA Brief — GenStudio POC</title>
       <description>Heineken GenStudio proof of concept: creative production, asset generation, brand intelligence.</description>
       <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-07-episode-4.mp3" length="11004140" type="audio/mpeg"/>
