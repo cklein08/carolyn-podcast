@@ -19,12 +19,19 @@ import argparse
 import asyncio
 import datetime
 import hashlib
+import html
 import json
 import os
 import subprocess
 import sys
 import time
 from pathlib import Path
+
+def xml_escape(text: str) -> str:
+    """Escape special XML characters for safe inclusion in RSS feed."""
+    if not text:
+        return ""
+    return html.escape(text, quote=False)
 
 # Edge TTS voice — female British (matches JARVIS voice assistant Sonia)
 DEFAULT_VOICE = "en-GB-SoniaNeural"
@@ -176,9 +183,9 @@ def generate_rss(manifest: dict) -> str:
         audio_url = ep["audio_url"]
         duration = ep.get("duration", 0)
         size = ep.get("size", 0)
-        title = ep["title"]
+        title = xml_escape(ep["title"])
         pub_date = ep.get("pub_date", "")
-        description = ep.get("description", "")
+        description = xml_escape(ep.get("description", ""))
         guid = ep.get("guid", title)
 
         rss_parts.append('    <item>')
