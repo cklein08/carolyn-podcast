@@ -161,6 +161,16 @@ def generate_rss(manifest: dict) -> str:
     rss_parts.append(f'    <itunes:category text="{PODCAST_CATEGORY}"/>')
     rss_parts.append('    <itunes:explicit>false</itunes:explicit>')
     rss_parts.append('    <itunes:type>episodic</itunes:type>')
+    rss_parts.append(f'    <itunes:owner>')
+    rss_parts.append(f'      <itunes:name>{PODCAST_AUTHOR}</itunes:name>')
+    rss_parts.append(f'      <itunes:email>carolyn.klein08@gmail.com</itunes:email>')
+    rss_parts.append(f'    </itunes:owner>')
+    rss_parts.append(f'    <itunes:image href="{BASE_URL}/cover-art.jpg"/>')
+    rss_parts.append(f'    <image>')
+    rss_parts.append(f'      <url>{BASE_URL}/cover-art.jpg</url>')
+    rss_parts.append(f'      <title>{PODCAST_TITLE}</title>')
+    rss_parts.append(f'      <link>{BASE_URL}/</link>')
+    rss_parts.append(f'    </image>')
 
     for ep in episodes_sorted:
         audio_url = ep["audio_url"]
