@@ -10,6 +10,16 @@
     <itunes:category text="Technology"/>
     <itunes:explicit>false</itunes:explicit>
     <itunes:type>episodic</itunes:type>
+    <itunes:owner>
+      <itunes:name>Carolyn Klein</itunes:name>
+      <itunes:email>carolyn.klein08@gmail.com</itunes:email>
+    </itunes:owner>
+    <itunes:image href="https://cklein08.github.io/carolyn-podcast/cover-art.jpg"/>
+    <image>
+      <url>https://cklein08.github.io/carolyn-podcast/cover-art.jpg</url>
+      <title>Carolyn's Daily Briefing</title>
+      <link>https://cklein08.github.io/carolyn-podcast/</link>
+    </image>
     <item>
       <title>KPN Deck Modifications — EA POV</title>
       <description>KPN deck modifications from Carolyn's enterprise architect point of view.</description>
