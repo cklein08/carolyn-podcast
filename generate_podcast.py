@@ -22,6 +22,7 @@ import hashlib
 import html
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -32,6 +33,109 @@ def xml_escape(text: str) -> str:
     if not text:
         return ""
     return html.escape(text, quote=False)
+
+
+def clean_for_speech(text: str) -> str:
+    """Strip ALL markdown formatting and noise so Edge TTS reads natural speech.
+
+    Removes: headers (#/##/###), bold (**/**), italic (*), code (`), links [text](url),
+    images ![alt](url), blockquotes (>), horizontal rules (---), list markers (-/*/1.),
+    hashtags (#tag), footnotes [^n], tables, HTML tags, emoji codes, and excess whitespace.
+    Also normalizes punctuation for spoken English (e.g. → 'to', & → 'and').
+    """
+    if not text:
+        return ""
+
+    # 1. Remove HTML tags entirely
+    text = re.sub(r'<[^>]+>', ' ', text)
+
+    # 2. Remove image markdown ![alt](url) — keep alt text if present
+    text = re.sub(r'!\[([^\]]*)\]\([^)]*\)', r'\1', text)
+
+    # 3. Remove link markdown [text](url) — keep the link text
+    text = re.sub(r'\[([^\]]*)\]\([^)]*\)', r'\1', text)
+
+    # 4. Remove reference-style link definitions [text]: url
+    text = re.sub(r'^\[([^\]]*)\]:\s*\S+.*$', '', text, flags=re.MULTILINE)
+
+    # 5. Remove footnotes [^1] and footnote definitions
+    text = re.sub(r'\[\^\d+\]', '', text)
+    text = re.sub(r'^\[\^\d+\]:.*$', '', text, flags=re.MULTILINE)
+
+    # 6. Remove horizontal rules (---, ***, ___)
+    text = re.sub(r'^[\*\-_]{3,}\s*$', ' ', text, flags=re.MULTILINE)
+
+    # 7. Remove heading markers (## Header → Header)
+    text = re.sub(r'^#{1,6}\s+', '', text, flags=re.MULTILINE)
+
+    # 8. Remove bold/italic markers (**bold**, __bold__, *italic*, _italic_)
+    text = re.sub(r'\*\*(.+?)\*\*', r'\1', text)
+    text = re.sub(r'__(.+?)__', r'\1', text)
+    text = re.sub(r'(?<!\w)\*([^*]+?)\*(?!\w)', r'\1', text)
+    text = re.sub(r'(?<!\w)_([^_]+?)_(?!\w)', r'\1', text)
+
+    # 9. Remove inline code (`code`) and code block markers
+    text = re.sub(r'```[^\n]*\n?', '', text)
+    text = re.sub(r'`([^`]+)`', r'\1', text)
+
+    # 10. Remove blockquote markers
+    text = re.sub(r'^\s*>\s+', '', text, flags=re.MULTILINE)
+
+    # 11. Remove list markers (- , * , + , 1. , 2. etc.) at line starts
+    text = re.sub(r'^\s*[\*\-+]\s+', '', text, flags=re.MULTILINE)
+    text = re.sub(r'^\s*\d+\.\s+', '', text, flags=re.MULTILINE)
+
+    # 12. Remove hashtags (#tag) — keep the word without the hash
+    text = re.sub(r'#(\w+)', r'\1', text)
+
+    # 13. Remove table separators and pipes (| col1 | col2 |)
+    text = re.sub(r'^\s*\|.*\|\s*$', '', text, flags=re.MULTILINE)
+    text = re.sub(r'(?<!\w)\|(?!\w)', ' ', text)
+
+    # 14. Remove strikethrough (~~text~~)
+    text = re.sub(r'~~(.+?)~~', r'\1', text)
+
+    # 15. Remove emoji shortcodes (:emoji:)
+    text = re.sub(r':[a-z_]+:', ' ', text)
+
+    # 16. Replace common symbols with spoken equivalents
+    text = text.replace('→', ' to ')
+    text = text.replace('←', ' from ')
+    text = text.replace(' & ', ' and ')
+    text = text.replace('&amp;', ' and ')
+    text = text.replace('—', ' — ')  # em dash (TTS pauses naturally)
+    text = text.replace('–', ' – ')  # en dash
+    text = text.replace('…', '... ')
+    text = text.replace('•', ' — ')
+    text = text.replace('·', ' ')
+    text = text.replace('©', ' copyright ')
+    text = text.replace('®', ' registered ')
+    text = text.replace('™', ' trademark ')
+    text = text.replace('€', ' euros ')
+    text = text.replace('£', ' pounds ')
+    text = text.replace('¥', ' yen ')
+
+    # 17. Expand common abbreviations for natural speech
+    text = re.sub(r'\be\.g\.', 'for example', text)
+    text = re.sub(r'\bi\.e\.', 'that is', text)
+    text = re.sub(r'\betc\.', 'etcetera', text)
+    text = re.sub(r'\bviz\.', 'namely', text)
+
+    # 18. Remove markdown artifact characters that survived
+    text = re.sub(r'[*#`>|]', ' ', text)
+
+    # 19. Remove URLs entirely (http://...) — they sound terrible spoken aloud
+    text = re.sub(r'https?://\S+', ' ', text)
+
+    # 20. Collapse whitespace: multiple spaces → single, multiple blank lines → single
+    text = re.sub(r'[ \t]+', ' ', text)
+    text = re.sub(r'\n{3,}', '\n\n', text)
+
+    # 21. Remove leading/trailing whitespace from each line
+    text = '\n'.join(line.strip() for line in text.split('\n'))
+
+    # 22. Final strip
+    return text.strip()
 
 # Edge TTS voice — female British (matches JARVIS voice assistant Sonia)
 DEFAULT_VOICE = "en-GB-SoniaNeural"
@@ -75,9 +179,60 @@ def get_file_size(mp3_path: Path) -> int:
     return mp3_path.stat().st_size
 
 
+def text_to_speech_gtts(text: str, output_path: Path) -> bool:
+    """Fallback: Convert text to speech using gTTS (Google Translate TTS)."""
+    from gtts import gTTS
+    import tempfile
+
+    # gTTS handles ~but can't do natural pauses between paragraphs well
+    # Split by paragraphs for natural pauses
+    paragraphs = [p.strip() for p in text.split("\n\n") if p.strip()]
+    if not paragraphs:
+        paragraphs = [text.strip()]
+
+    print(f"  gTTS fallback: {len(paragraphs)} paragraphs")
+
+    temp_files = []
+    for i, para in enumerate(paragraphs):
+        tmp_path = output_path.parent / f"_gtts_{i:03d}_{output_path.name}"
+        try:
+            tts = gTTS(para, lang='en', tld='com', slow=False)
+            tts.save(str(tmp_path))
+            temp_files.append(tmp_path)
+            print(f"  Paragraph {i+1}/{len(paragraphs)} done ({len(para)} chars)")
+        except Exception as e:
+            print(f"  ERROR gTTS paragraph {i}: {e}", file=sys.stderr)
+            return False
+
+    # Concatenate with ffmpeg
+    if len(temp_files) == 1:
+        temp_files[0].rename(output_path)
+    else:
+        concat_file = output_path.parent / f"_concat_gtts_{int(time.time())}.txt"
+        with open(concat_file, "w") as f:
+            for tf in temp_files:
+                f.write(f"file '{tf}'\n")
+        subprocess.run(
+            ["ffmpeg", "-y", "-f", "concat", "-safe", "0",
+             "-i", str(concat_file), "-c:a", "libmp3lame", "-q:a", "4", str(output_path)],
+            capture_output=True, timeout=300
+        )
+        concat_file.unlink(missing_ok=True)
+        for tf in temp_files:
+            tf.unlink(missing_ok=True)
+
+    return output_path.exists()
+
+
 async def text_to_speech(text: str, output_path: Path, voice: str = DEFAULT_VOICE) -> bool:
-    """Convert text to speech using Edge TTS and save as MP3."""
-    import edge_tts
+    """Convert text to speech using Edge TTS and save as MP3.
+    Falls back to gTTS if Edge TTS is unavailable (403/auth errors).
+    """
+    try:
+        import edge_tts
+    except ImportError:
+        print("  Edge TTS not installed, using gTTS fallback.")
+        return text_to_speech_gtts(text, output_path)
 
     # Split very long text into chunks if needed (Edge TTS handles ~5min chunks well)
     # For 20min content, we split by paragraphs and concatenate
@@ -112,8 +267,12 @@ async def text_to_speech(text: str, output_path: Path, voice: str = DEFAULT_VOIC
             temp_files.append(temp_path)
             print(f"  Chunk {i+1}/{len(chunks)} done ({len(chunk)} chars)")
         except Exception as e:
-            print(f"  ERROR chunk {i}: {e}", file=sys.stderr)
-            return False
+            print(f"  Edge TTS failed (chunk {i}: {e})")
+            print("  Falling back to gTTS for all chunks...")
+            # Clean up any partial temp files
+            for tf in temp_files:
+                tf.unlink(missing_ok=True)
+            return text_to_speech_gtts(text, output_path)
 
     # Concatenate with ffmpeg
     if len(temp_files) == 1:
@@ -282,6 +441,12 @@ def generate_episode(title: str, text: str, description: str = "", voice: str = 
     print(f"\n🎙️  Generating episode {ep_num}: {title}")
     print(f"  Date: {date_str}")
     print(f"  Text length: {len(text)} chars (~{len(text)//12} sec, ~{len(text)//900} min)")
+
+    # Clean markdown noise before TTS so the voice reads natural speech, not asterisks
+    text = clean_for_speech(text)
+    if not text:
+        print("  ERROR: Text is empty after cleaning!", file=sys.stderr)
+        return None
 
     # Generate TTS
     AUDIO_DIR.mkdir(exist_ok=True)
