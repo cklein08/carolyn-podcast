@@ -93,6 +93,15 @@
       <itunes:summary>Test episode verifying the podcast generation and delivery pipeline.</itunes:summary>
     </item>
     <item>
+      <title>Morning Brief — Monday, October 12</title>
+      <description>Morning briefing for Monday, October 12. Generated from NotePlan morning brief (/opt/data/noteplan/Work/October/October 12/Morning Brief.txt).</description>
+      <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-12-episode-11.mp3" length="3181916" type="audio/mpeg"/>
+      <guid isPermaLink="false">8df45c447982</guid>
+      <pubDate>Mon, 12 Oct 2026 17:21:37 +0000</pubDate>
+      <itunes:duration>463</itunes:duration>
+      <itunes:summary>Morning briefing for Monday, October 12. Generated from NotePlan morning brief (/opt/data/noteplan/Work/October/October 12/Morning Brief.txt).</itunes:summary>
+    </item>
+    <item>
       <title>Brand Intelligence — The EA Pitch</title>
       <description>Adobe Brand Intelligence: the brand governance and knowledge layer that makes agentic content production trustworthy at enterprise scale. How it connects to FORGE and why it matters.</description>
       <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-12-episode-10.mp3" length="5166140" type="audio/mpeg"/>
