@@ -142,6 +142,19 @@
       "episode_number": 11,
       "date": "2026-10-12",
       "voice": "en-GB-SoniaNeural"
+    },
+    {
+      "title": "AI Playbooks: From Intro to Expert",
+      "description": "A deep dive on AI playbooks \u2014 what they are, how they work under the hood, enterprise challenges, and where they are heading. From template basics to agentic AI-assisted playbook creation.",
+      "audio_file": "/opt/data/.hermes/scripts/podcast/repo/audio/2026-10-12-episode-12.mp3",
+      "audio_url": "https://cklein08.github.io/carolyn-podcast/audio/2026-10-12-episode-12.mp3",
+      "duration": 1072.752,
+      "size": 7442924,
+      "guid": "a23701acafeb",
+      "pub_date": "Mon, 12 Oct 2026 17:56:59 +0000",
+      "episode_number": 12,
+      "date": "2026-10-12",
+      "voice": "en-GB-SoniaNeural"
     }
   ]
 }
