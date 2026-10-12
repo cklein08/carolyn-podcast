@@ -93,6 +93,15 @@
       <itunes:summary>Test episode verifying the podcast generation and delivery pipeline.</itunes:summary>
     </item>
     <item>
+      <title>Brand Intelligence — The EA Pitch</title>
+      <description>Adobe Brand Intelligence: the brand governance and knowledge layer that makes agentic content production trustworthy at enterprise scale. How it connects to FORGE and why it matters.</description>
+      <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-12-episode-10.mp3" length="5166140" type="audio/mpeg"/>
+      <guid isPermaLink="false">7638b85e4cb8</guid>
+      <pubDate>Mon, 12 Oct 2026 17:19:30 +0000</pubDate>
+      <itunes:duration>741</itunes:duration>
+      <itunes:summary>Adobe Brand Intelligence: the brand governance and knowledge layer that makes agentic content production trustworthy at enterprise scale. How it connects to FORGE and why it matters.</itunes:summary>
+    </item>
+    <item>
       <title>The Enterprise Architect's Edge — Catalyze: The Strategy Layer</title>
       <description>Catalyze: The Strategy Layer That Makes Everything Below It Smarter. How Adobe's agentic stack connects from strategy through delivery — and where Catalyze fits as the top-of-funnel AI canvas.</description>
       <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-12-episode-9.mp3" length="8784860" type="audio/mpeg"/>

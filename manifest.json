@@ -116,6 +116,19 @@
       "episode_number": 9,
       "date": "2026-10-12",
       "voice": "en-GB-SoniaNeural"
+    },
+    {
+      "title": "Brand Intelligence \u2014 The EA Pitch",
+      "description": "Adobe Brand Intelligence: the brand governance and knowledge layer that makes agentic content production trustworthy at enterprise scale. How it connects to FORGE and why it matters.",
+      "audio_file": "/opt/data/.hermes/scripts/podcast/repo/audio/2026-10-12-episode-10.mp3",
+      "audio_url": "https://cklein08.github.io/carolyn-podcast/audio/2026-10-12-episode-10.mp3",
+      "duration": 741.048,
+      "size": 5166140,
+      "guid": "7638b85e4cb8",
+      "pub_date": "Mon, 12 Oct 2026 17:19:30 +0000",
+      "episode_number": 10,
+      "date": "2026-10-12",
+      "voice": "en-GB-SoniaNeural"
     }
   ]
 }
