@@ -93,6 +93,15 @@
       <itunes:summary>Test episode verifying the podcast generation and delivery pipeline.</itunes:summary>
     </item>
     <item>
+      <title>Morning Brief — Monday, October 12</title>
+      <description>Morning briefing for Monday, October 12. Generated from NotePlan morning brief (/opt/data/noteplan/Work/October/October 12/Morning Brief.txt).</description>
+      <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-12-episode-13.mp3" length="4287092" type="audio/mpeg"/>
+      <guid isPermaLink="false">51f0787a0eeb</guid>
+      <pubDate>Mon, 12 Oct 2026 18:29:46 +0000</pubDate>
+      <itunes:duration>622</itunes:duration>
+      <itunes:summary>Morning briefing for Monday, October 12. Generated from NotePlan morning brief (/opt/data/noteplan/Work/October/October 12/Morning Brief.txt).</itunes:summary>
+    </item>
+    <item>
       <title>AI Playbooks: From Intro to Expert</title>
       <description>A deep dive on AI playbooks — what they are, how they work under the hood, enterprise challenges, and where they are heading. From template basics to agentic AI-assisted playbook creation.</description>
       <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-12-episode-12.mp3" length="7442924" type="audio/mpeg"/>
