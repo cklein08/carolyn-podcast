@@ -93,6 +93,15 @@
       <itunes:summary>Test episode verifying the podcast generation and delivery pipeline.</itunes:summary>
     </item>
     <item>
+      <title>Morning Brief — Tuesday, October 13</title>
+      <description>Morning briefing for Tuesday, October 13. Priorities, rollovers, and inbox highlights.</description>
+      <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-13-episode-16.mp3" length="3628250" type="audio/mpeg"/>
+      <guid isPermaLink="false">a14104579605</guid>
+      <pubDate>Tue, 13 Oct 2026 15:48:30 +0000</pubDate>
+      <itunes:duration>520</itunes:duration>
+      <itunes:summary>Morning briefing for Tuesday, October 13. Priorities, rollovers, and inbox highlights.</itunes:summary>
+    </item>
+    <item>
       <title>The Enterprise Architect's Edge — Catalyze: The Strategy Layer</title>
       <description>Catalyze: The Strategy Layer That Makes Everything Below It Smarter.</description>
       <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-13-episode-15.mp3" length="7473171" type="audio/mpeg"/>

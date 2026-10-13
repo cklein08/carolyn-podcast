@@ -194,6 +194,19 @@
       "episode_number": 15,
       "date": "2026-10-13",
       "voice": "en-GB-SoniaNeural"
+    },
+    {
+      "title": "Morning Brief \u2014 Tuesday, October 13",
+      "description": "Morning briefing for Tuesday, October 13. Priorities, rollovers, and inbox highlights.",
+      "audio_file": "/opt/data/.hermes/scripts/podcast/repo/audio/2026-10-13-episode-16.mp3",
+      "audio_url": "https://cklein08.github.io/carolyn-podcast/audio/2026-10-13-episode-16.mp3",
+      "duration": 520.986122,
+      "size": 3628250,
+      "guid": "a14104579605",
+      "pub_date": "Tue, 13 Oct 2026 15:48:30 +0000",
+      "episode_number": 16,
+      "date": "2026-10-13",
+      "voice": "en-GB-SoniaNeural"
     }
   ]
 }
