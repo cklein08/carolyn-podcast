@@ -93,6 +93,15 @@
       <itunes:summary>Test episode verifying the podcast generation and delivery pipeline.</itunes:summary>
     </item>
     <item>
+      <title>The Enterprise Architect's Edge — Catalyze: The Strategy Layer</title>
+      <description>Catalyze: The Strategy Layer That Makes Everything Below It Smarter.</description>
+      <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-13-episode-15.mp3" length="7473171" type="audio/mpeg"/>
+      <guid isPermaLink="false">a9792659beee</guid>
+      <pubDate>Tue, 13 Oct 2026 15:43:57 +0000</pubDate>
+      <itunes:duration>1133</itunes:duration>
+      <itunes:summary>Catalyze: The Strategy Layer That Makes Everything Below It Smarter.</itunes:summary>
+    </item>
+    <item>
       <title>Morning Brief — Tuesday, October 13</title>
       <description>Morning briefing for Tuesday, October 13. Generated from NotePlan morning brief (/opt/data/noteplan/Work/October/October 13/Morning Brief.txt).</description>
       <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-13-episode-14.mp3" length="3844772" type="audio/mpeg"/>

@@ -181,6 +181,19 @@
       "episode_number": 14,
       "date": "2026-10-13",
       "voice": "en-GB-SoniaNeural"
+    },
+    {
+      "title": "The Enterprise Architect's Edge \u2014 Catalyze: The Strategy Layer",
+      "description": "Catalyze: The Strategy Layer That Makes Everything Below It Smarter.",
+      "audio_file": "/opt/data/.hermes/scripts/podcast/repo/audio/2026-10-13-episode-15.mp3",
+      "audio_url": "https://cklein08.github.io/carolyn-podcast/audio/2026-10-13-episode-15.mp3",
+      "duration": 1133.479184,
+      "size": 7473171,
+      "guid": "a9792659beee",
+      "pub_date": "Tue, 13 Oct 2026 15:43:57 +0000",
+      "episode_number": 15,
+      "date": "2026-10-13",
+      "voice": "en-GB-SoniaNeural"
     }
   ]
 }

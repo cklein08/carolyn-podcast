@@ -179,6 +179,120 @@ def get_file_size(mp3_path: Path) -> int:
     return mp3_path.stat().st_size
 
 
+# Piper TTS — local neural TTS, high quality, always available
+PIPER_DIR = Path("/opt/data/.hermes/scripts/podcast/piper")
+PIPER_BIN = PIPER_DIR / "piper"
+PIPER_VOICE = PIPER_DIR / "voices" / "en_GB-cori-high.onnx"
+PIPER_VOICE_CONFIG = PIPER_DIR / "voices" / "en_GB-cori-high.onnx.json"
+PIPER_SENTENCE_SILENCE = "0.5"  # seconds between sentences — natural breathing room
+
+DEFAULT_VOICE = "en-GB-SoniaNeural"  # Edge TTS fallback only
+
+
+def text_to_speech_piper(text: str, output_path: Path) -> bool:
+    """Convert text to speech using Piper (local neural TTS).
+
+    Feeds the entire text as one chunk for natural prosody flow.
+    Splits only if text exceeds ~5000 chars (Piper handles long input well,
+    but extremely long text can OOM — split at paragraph boundaries).
+    """
+    import os as _os
+    import shutil
+
+    if not PIPER_BIN.exists() or not PIPER_VOICE.exists():
+        print("  Piper not available, falling back to Edge/gTTS.")
+        return False
+
+    env = dict(_os.environ)
+    env["LD_LIBRARY_PATH"] = str(PIPER_DIR)
+
+    # Piper outputs WAV — we convert to MP3 with ffmpeg at the end
+    wav_path = output_path.with_suffix(".wav")
+
+    # Split very long text at paragraph boundaries into chunks < 5000 chars
+    max_chunk = 5000
+    paragraphs = [p.strip() for p in text.split("\n\n") if p.strip()]
+    chunks = []
+    current = ""
+    for para in paragraphs:
+        if len(current) + len(para) + 2 > max_chunk:
+            if current:
+                chunks.append(current)
+            current = para
+        else:
+            current = current + "\n\n" + para if current else para
+    if current:
+        chunks.append(current)
+
+    # If no paragraph breaks, use the whole text
+    if not chunks:
+        chunks = [text]
+
+    print(f"  Piper: {len(chunks)} chunk(s), voice=cori-high, silence={PIPER_SENTENCE_SILENCE}s")
+
+    if len(chunks) == 1:
+        # Single chunk — feed directly, best prosody
+        proc = subprocess.run(
+            [str(PIPER_BIN),
+             "--model", str(PIPER_VOICE),
+             "--config", str(PIPER_VOICE_CONFIG),
+             "--sentence_silence", PIPER_SENTENCE_SILENCE,
+             "--output_file", str(wav_path)],
+            input=text,
+            capture_output=True, text=True, timeout=300,
+            env=env
+        )
+        if proc.returncode != 0 or not wav_path.exists():
+            print(f"  Piper error: {proc.stderr[-200:]}")
+            return False
+    else:
+        # Multiple chunks — generate WAVs then concatenate
+        temp_wavs = []
+        for i, chunk in enumerate(chunks):
+            tmp_wav = output_path.parent / f"_piper_{i:03d}.wav"
+            proc = subprocess.run(
+                [str(PIPER_BIN),
+                 "--model", str(PIPER_VOICE),
+                 "--config", str(PIPER_VOICE_CONFIG),
+                 "--sentence_silence", PIPER_SENTENCE_SILENCE,
+                 "--output_file", str(tmp_wav)],
+                input=chunk,
+                capture_output=True, text=True, timeout=300,
+                env=env
+            )
+            if proc.returncode != 0 or not tmp_wav.exists():
+                print(f"  Piper error on chunk {i}: {proc.stderr[-200:]}")
+                for tw in temp_wavs:
+                    tw.unlink(missing_ok=True)
+                return False
+            temp_wavs.append(tmp_wav)
+            print(f"  Chunk {i+1}/{len(chunks)} done ({len(chunk)} chars)")
+
+        # Concatenate WAVs
+        concat_file = output_path.parent / f"_piper_concat_{int(time.time())}.txt"
+        with open(concat_file, "w") as f:
+            for tw in temp_wavs:
+                f.write(f"file '{tw}'\n")
+        subprocess.run(
+            ["ffmpeg", "-y", "-f", "concat", "-safe", "0",
+             "-i", str(concat_file), "-c", "copy", str(wav_path)],
+            capture_output=True, timeout=120
+        )
+        concat_file.unlink(missing_ok=True)
+        for tw in temp_wavs:
+            tw.unlink(missing_ok=True)
+
+    # Convert WAV to MP3
+    subprocess.run(
+        ["ffmpeg", "-y", "-i", str(wav_path),
+         "-acodec", "libmp3lame", "-q:a", "4", str(output_path)],
+        capture_output=True, timeout=120
+    )
+    wav_path.unlink(missing_ok=True)
+
+    return output_path.exists()
+
+
 def text_to_speech_gtts(text: str, output_path: Path) -> bool:
     """Fallback: Convert text to speech using gTTS (Google Translate TTS)."""
     from gtts import gTTS
@@ -225,9 +339,14 @@ def text_to_speech_gtts(text: str, output_path: Path) -> bool:
 
 
 async def text_to_speech(text: str, output_path: Path, voice: str = DEFAULT_VOICE) -> bool:
-    """Convert text to speech using Edge TTS and save as MP3.
-    Falls back to gTTS if Edge TTS is unavailable (403/auth errors).
-    """
+    """Convert text to speech using Piper (primary), Edge TTS (fallback), gTTS (last resort)."""
+
+    # Try Piper first — always available, high quality
+    if text_to_speech_piper(text, output_path):
+        return True
+    print("  Piper failed, trying Edge TTS...")
+
+    # Try Edge TTS
     try:
         import edge_tts
     except ImportError:
@@ -235,14 +354,12 @@ async def text_to_speech(text: str, output_path: Path, voice: str = DEFAULT_VOIC
         return text_to_speech_gtts(text, output_path)
 
     # Split very long text into chunks if needed (Edge TTS handles ~5min chunks well)
-    # For 20min content, we split by paragraphs and concatenate
-    max_chunk = 3000  # characters per chunk
+    max_chunk = 3000
 
     chunks = []
     if len(text) <= max_chunk:
         chunks = [text]
     else:
-        # Split by sentences, then group into chunks
         sentences = text.replace("\n", " ").split(". ")
         current_chunk = ""
         for sentence in sentences:
@@ -255,9 +372,8 @@ async def text_to_speech(text: str, output_path: Path, voice: str = DEFAULT_VOIC
         if current_chunk:
             chunks.append(current_chunk)
 
-    print(f"  TTS: {len(chunks)} chunks, voice={voice}")
+    print(f"  Edge TTS: {len(chunks)} chunks, voice={voice}")
 
-    # Generate audio for each chunk
     temp_files = []
     for i, chunk in enumerate(chunks):
         temp_path = output_path.parent / f"_{i}_{output_path.name}"
@@ -269,7 +385,6 @@ async def text_to_speech(text: str, output_path: Path, voice: str = DEFAULT_VOIC
         except Exception as e:
             print(f"  Edge TTS failed (chunk {i}: {e})")
             print("  Falling back to gTTS for all chunks...")
-            # Clean up any partial temp files
             for tf in temp_files:
                 tf.unlink(missing_ok=True)
             return text_to_speech_gtts(text, output_path)
@@ -288,7 +403,6 @@ async def text_to_speech(text: str, output_path: Path, voice: str = DEFAULT_VOIC
              "-i", str(concat_file), "-c", "copy", str(output_path)],
             capture_output=True, timeout=120
         )
-        # Clean up temp files
         concat_file.unlink(missing_ok=True)
         for tf in temp_files:
             tf.unlink(missing_ok=True)
