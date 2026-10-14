@@ -21,6 +21,15 @@
       <link>https://cklein08.github.io/carolyn-podcast/</link>
     </image>
     <item>
+      <title>Morning Brief — Wednesday, October 14</title>
+      <description>Morning briefing for Wednesday, October 14. Generated from NotePlan morning brief (/opt/data/noteplan/Work/October/October 14/Morning Brief.txt).</description>
+      <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-14-episode-17.mp3" length="2830052" type="audio/mpeg"/>
+      <guid isPermaLink="false">02a99542d521</guid>
+      <pubDate>Wed, 14 Oct 2026 18:15:27 +0000</pubDate>
+      <itunes:duration>413</itunes:duration>
+      <itunes:summary>Morning briefing for Wednesday, October 14. Generated from NotePlan morning brief (/opt/data/noteplan/Work/October/October 14/Morning Brief.txt).</itunes:summary>
+    </item>
+    <item>
       <title>KPN Deck Modifications — EA POV</title>
       <description>KPN deck modifications from Carolyn's enterprise architect point of view.</description>
       <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-07-episode-8.mp3" length="8430428" type="audio/mpeg"/>

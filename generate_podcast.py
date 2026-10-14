@@ -232,16 +232,20 @@ def text_to_speech_piper(text: str, output_path: Path) -> bool:
 
     if len(chunks) == 1:
         # Single chunk — feed directly, best prosody
-        proc = subprocess.run(
-            [str(PIPER_BIN),
-             "--model", str(PIPER_VOICE),
-             "--config", str(PIPER_VOICE_CONFIG),
-             "--sentence_silence", PIPER_SENTENCE_SILENCE,
-             "--output_file", str(wav_path)],
-            input=text,
-            capture_output=True, text=True, timeout=300,
-            env=env
-        )
+        try:
+            proc = subprocess.run(
+                [str(PIPER_BIN),
+                 "--model", str(PIPER_VOICE),
+                 "--config", str(PIPER_VOICE_CONFIG),
+                 "--sentence_silence", PIPER_SENTENCE_SILENCE,
+                 "--output_file", str(wav_path)],
+                input=text,
+                capture_output=True, text=True, timeout=900,
+                env=env
+            )
+        except subprocess.TimeoutExpired:
+            print("  Piper timed out after 900s, falling back to Edge/gTTS.")
+            return False
         if proc.returncode != 0 or not wav_path.exists():
             print(f"  Piper error: {proc.stderr[-200:]}")
             return False
@@ -250,16 +254,22 @@ def text_to_speech_piper(text: str, output_path: Path) -> bool:
         temp_wavs = []
         for i, chunk in enumerate(chunks):
             tmp_wav = output_path.parent / f"_piper_{i:03d}.wav"
-            proc = subprocess.run(
-                [str(PIPER_BIN),
-                 "--model", str(PIPER_VOICE),
-                 "--config", str(PIPER_VOICE_CONFIG),
-                 "--sentence_silence", PIPER_SENTENCE_SILENCE,
-                 "--output_file", str(tmp_wav)],
-                input=chunk,
-                capture_output=True, text=True, timeout=300,
-                env=env
-            )
+            try:
+                proc = subprocess.run(
+                    [str(PIPER_BIN),
+                     "--model", str(PIPER_VOICE),
+                     "--config", str(PIPER_VOICE_CONFIG),
+                     "--sentence_silence", PIPER_SENTENCE_SILENCE,
+                     "--output_file", str(tmp_wav)],
+                    input=chunk,
+                    capture_output=True, text=True, timeout=600,
+                    env=env
+                )
+            except subprocess.TimeoutExpired:
+                print(f"  Piper timed out on chunk {i}, falling back to Edge/gTTS.")
+                for tw in temp_wavs:
+                    tw.unlink(missing_ok=True)
+                return False
             if proc.returncode != 0 or not tmp_wav.exists():
                 print(f"  Piper error on chunk {i}: {proc.stderr[-200:]}")
                 for tw in temp_wavs:
