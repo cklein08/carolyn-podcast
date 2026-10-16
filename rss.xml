@@ -182,5 +182,14 @@
       <itunes:duration>1280</itunes:duration>
       <itunes:summary>Catalyze: The Strategy Layer That Makes Everything Below It Smarter. How Adobe's agentic stack connects from strategy through delivery — and where Catalyze fits as the top-of-funnel AI canvas.</itunes:summary>
     </item>
+    <item>
+      <title>Morning Brief — Friday, October 16</title>
+      <description>Morning briefing for Friday, October 16. Generated from NotePlan morning brief (/opt/data/noteplan/Work/October/October 16/Morning Brief.txt).</description>
+      <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-16-episode-19.mp3" length="3300967" type="audio/mpeg"/>
+      <guid isPermaLink="false">5a164f874c7b</guid>
+      <pubDate>Fri, 16 Oct 2026 14:31:58 +0000</pubDate>
+      <itunes:duration>494</itunes:duration>
+      <itunes:summary>Morning briefing for Friday, October 16. Generated from NotePlan morning brief (/opt/data/noteplan/Work/October/October 16/Morning Brief.txt).</itunes:summary>
+    </item>
   </channel>
 </rss>
