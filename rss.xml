@@ -102,6 +102,15 @@
       <itunes:summary>Test episode verifying the podcast generation and delivery pipeline.</itunes:summary>
     </item>
     <item>
+      <title>Morning Brief — Tuesday, October 20</title>
+      <description>Morning briefing for Tuesday, October 20. Generated from NotePlan morning brief (/opt/data/noteplan/Work/October/October 20/Morning Brief.txt).</description>
+      <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-20-episode-21.mp3" length="3063781" type="audio/mpeg"/>
+      <guid isPermaLink="false">7ff62164360d</guid>
+      <pubDate>Tue, 20 Oct 2026 14:30:38 +0000</pubDate>
+      <itunes:duration>449</itunes:duration>
+      <itunes:summary>Morning briefing for Tuesday, October 20. Generated from NotePlan morning brief (/opt/data/noteplan/Work/October/October 20/Morning Brief.txt).</itunes:summary>
+    </item>
+    <item>
       <title>Morning Brief — Tuesday, October 13</title>
       <description>Morning briefing for Tuesday, October 13. Priorities, rollovers, and inbox highlights.</description>
       <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-13-episode-16.mp3" length="3628250" type="audio/mpeg"/>

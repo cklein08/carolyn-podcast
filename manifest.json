@@ -259,6 +259,19 @@
       "episode_number": 20,
       "date": "2026-10-19",
       "voice": "en-GB-SoniaNeural"
+    },
+    {
+      "title": "Morning Brief \u2014 Tuesday, October 20",
+      "description": "Morning briefing for Tuesday, October 20. Generated from NotePlan morning brief (/opt/data/noteplan/Work/October/October 20/Morning Brief.txt).",
+      "audio_file": "/opt/data/.hermes/scripts/podcast/repo/audio/2026-10-20-episode-21.mp3",
+      "audio_url": "https://cklein08.github.io/carolyn-podcast/audio/2026-10-20-episode-21.mp3",
+      "duration": 449.322177,
+      "size": 3063781,
+      "guid": "7ff62164360d",
+      "pub_date": "Tue, 20 Oct 2026 14:30:38 +0000",
+      "episode_number": 21,
+      "date": "2026-10-20",
+      "voice": "en-GB-SoniaNeural"
     }
   ]
 }
