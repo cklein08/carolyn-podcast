@@ -298,6 +298,19 @@
       "episode_number": 23,
       "date": "2026-10-22",
       "voice": "en-GB-SoniaNeural"
+    },
+    {
+      "title": "Morning Brief \u2014 Friday, October 23",
+      "description": "Morning briefing for Friday, October 23. Generated from NotePlan morning brief (/opt/data/noteplan/Work/October/October 23/Morning Brief.txt).",
+      "audio_file": "/opt/data/.hermes/scripts/podcast/repo/audio/2026-10-23-episode-24.mp3",
+      "audio_url": "https://cklein08.github.io/carolyn-podcast/audio/2026-10-23-episode-24.mp3",
+      "duration": 467.501043,
+      "size": 3155479,
+      "guid": "e949a1ed807f",
+      "pub_date": "Fri, 23 Oct 2026 14:30:45 +0000",
+      "episode_number": 24,
+      "date": "2026-10-23",
+      "voice": "en-GB-SoniaNeural"
     }
   ]
 }
