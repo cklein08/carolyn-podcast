@@ -111,6 +111,15 @@
       <itunes:summary>Test episode verifying the podcast generation and delivery pipeline.</itunes:summary>
     </item>
     <item>
+      <title>Catalyze: The Strategy Layer That Makes Everything Below It Smarter</title>
+      <description>How Adobe Catalyze connects to FORGE, Coworker, and your EA positioning — from strategy ideation through the full agentic stack. For EAs, sellers, and anyone who needs to position Adobe's agentic stack end-to-end.</description>
+      <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-27-episode-27.mp3" length="10704380" type="audio/mpeg"/>
+      <guid isPermaLink="false">584dfee03365</guid>
+      <pubDate>Tue, 27 Oct 2026 18:15:58 +0000</pubDate>
+      <itunes:duration>1279</itunes:duration>
+      <itunes:summary>How Adobe Catalyze connects to FORGE, Coworker, and your EA positioning — from strategy ideation through the full agentic stack. For EAs, sellers, and anyone who needs to position Adobe's agentic stack end-to-end.</itunes:summary>
+    </item>
+    <item>
       <title>Morning Brief — Tuesday, October 27</title>
       <description>Morning briefing for Tuesday, October 27. Generated from NotePlan morning brief (/opt/data/noteplan/Work/October/October 27/Morning Brief.txt).</description>
       <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-10-27-episode-26.mp3" length="2471731" type="audio/mpeg"/>
