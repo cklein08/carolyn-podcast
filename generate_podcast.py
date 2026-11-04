@@ -23,6 +23,7 @@ import html
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import time
@@ -541,6 +542,10 @@ def push_to_github(commit_msg: str = "Add podcast episode") -> bool:
             return True
         print(f"  Git commit error: {result.stderr}")
         return False
+    # Ensure we push as the correct GitHub account (cklein08 owns this repo)
+    gh = shutil.which("gh")
+    if gh:
+        subprocess.run([gh, "auth", "switch", "--user", GITHUB_USER], capture_output=True, text=True)
     result = subprocess.run(["git", "push", "origin", "main"], capture_output=True, text=True, timeout=60)
     if result.returncode != 0:
         print(f"  Git push error: {result.stderr}")
