@@ -441,6 +441,19 @@
       "episode_number": 34,
       "date": "2026-11-05",
       "voice": "en-GB-SoniaNeural"
+    },
+    {
+      "title": "Morning Brief \u2014 Friday, November 6",
+      "description": "Morning briefing for Friday, November 6. Generated from NotePlan morning brief (/opt/data/noteplan/Work/November/November 6/Morning Brief.md).",
+      "audio_file": "/opt/data/.hermes/scripts/podcast/repo/audio/2026-11-06-episode-35.mp3",
+      "audio_url": "https://cklein08.github.io/carolyn-podcast/audio/2026-11-06-episode-35.mp3",
+      "duration": 567.940544,
+      "size": 3865277,
+      "guid": "22d431854053",
+      "pub_date": "Fri, 06 Nov 2026 15:30:05 +0000",
+      "episode_number": 35,
+      "date": "2026-11-06",
+      "voice": "en-GB-SoniaNeural"
     }
   ]
 }

@@ -326,5 +326,14 @@
       <itunes:duration>494</itunes:duration>
       <itunes:summary>Morning briefing for Friday, October 16. Generated from NotePlan morning brief (/opt/data/noteplan/Work/October/October 16/Morning Brief.txt).</itunes:summary>
     </item>
+    <item>
+      <title>Morning Brief — Friday, November 6</title>
+      <description>Morning briefing for Friday, November 6. Generated from NotePlan morning brief (/opt/data/noteplan/Work/November/November 6/Morning Brief.md).</description>
+      <enclosure url="https://cklein08.github.io/carolyn-podcast/audio/2026-11-06-episode-35.mp3" length="3865277" type="audio/mpeg"/>
+      <guid isPermaLink="false">22d431854053</guid>
+      <pubDate>Fri, 06 Nov 2026 15:30:05 +0000</pubDate>
+      <itunes:duration>567</itunes:duration>
+      <itunes:summary>Morning briefing for Friday, November 6. Generated from NotePlan morning brief (/opt/data/noteplan/Work/November/November 6/Morning Brief.md).</itunes:summary>
+    </item>
   </channel>
 </rss>
